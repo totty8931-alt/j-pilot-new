@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
+import Header from "../components/Header";
 import "./globals.css";
-import BottomNav from "../components/BottomNav";
 
 export const metadata: Metadata = {
   title: "J-Pilot",
-  description: "Japan travel guide app for international visitors",
+  description: "Your Japan Travel Guide",
 };
 
 export default function RootLayout({
@@ -13,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body>
+        <Header />
         {children}
-        <BottomNav />
       </body>
     </html>
   );
