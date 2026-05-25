@@ -153,21 +153,21 @@ export default function RestaurantsPage() {
               <div className="mt-5 space-y-2">
                 <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
                   <span className="font-bold text-slate-900">English Menu</span>
-                  <span className="font-bold text-red-700">
+                  <span className="font-bold text-green-700">
                     {restaurant.englishMenu ? "Available" : "No"}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
                   <span className="font-bold text-slate-900">Vegetarian</span>
-                  <span className="font-bold text-red-700">
+                  <span className="font-bold text-green-700">
                     {restaurant.vegetarian ? "Available" : "Limited"}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
                   <span className="font-bold text-slate-900">Halal</span>
-                  <span className="font-bold text-red-700">
+                  <span className="font-bold text-green-700">
                     {restaurant.halal ? "Available" : "No"}
                   </span>
                 </div>
