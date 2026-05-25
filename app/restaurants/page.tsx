@@ -81,6 +81,10 @@ const restaurants = [
   },
 ];
 
+function availabilityColor(label: string) {
+  return label === "Available" ? "text-green-700" : "text-red-700";
+}
+
 export default function RestaurantsPage() {
   return (
     <main className="min-h-screen bg-[#FAF7F0] text-slate-900">
@@ -120,75 +124,101 @@ export default function RestaurantsPage() {
 
       <section className="mx-auto max-w-6xl px-5 pb-16">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {restaurants.map((restaurant) => (
-            <article
-              key={restaurant.name}
-              className="rounded-3xl border border-red-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-            >
-              <div className="mb-4 text-4xl">{restaurant.emoji}</div>
+          {restaurants.map((restaurant) => {
+            const englishMenuLabel = restaurant.englishMenu
+              ? "Available"
+              : "No";
 
-              <div className="mb-3 flex items-start justify-between gap-3">
-                <div>
-                  <h2 className="text-xl font-black text-slate-950">
-                    {restaurant.name}
-                  </h2>
-                  <p className="mt-1 text-sm font-bold text-red-700">
-                    {restaurant.area}
-                  </p>
-                </div>
+            const vegetarianLabel = restaurant.vegetarian
+              ? "Available"
+              : "Limited";
 
-                <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-700">
-                  {restaurant.price}
-                </span>
-              </div>
+            const halalLabel = restaurant.halal ? "Available" : "No";
 
-              <p className="text-sm font-semibold text-slate-500">
-                {restaurant.category}
-              </p>
+            return (
+              <article
+                key={restaurant.name}
+                className="rounded-3xl border border-red-100 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              >
+                <div className="mb-4 text-4xl">{restaurant.emoji}</div>
 
-              <p className="mt-4 text-sm leading-6 text-slate-600">
-                {restaurant.description}
-              </p>
+                <div className="mb-3 flex items-start justify-between gap-3">
+                  <div>
+                    <h2 className="text-xl font-black text-slate-950">
+                      {restaurant.name}
+                    </h2>
+                    <p className="mt-1 text-sm font-bold text-red-700">
+                      {restaurant.area}
+                    </p>
+                  </div>
 
-              <div className="mt-5 space-y-2">
-                <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
-                  <span className="font-bold text-slate-900">English Menu</span>
-                  <span className="font-bold text-green-700">
-                    {restaurant.englishMenu ? "Available" : "No"}
+                  <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-700">
+                    {restaurant.price}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
-                  <span className="font-bold text-slate-900">Vegetarian</span>
-                  <span className="font-bold text-green-700">
-                    {restaurant.vegetarian ? "Available" : "Limited"}
-                  </span>
+                <p className="text-sm font-semibold text-slate-500">
+                  {restaurant.category}
+                </p>
+
+                <p className="mt-4 text-sm leading-6 text-slate-600">
+                  {restaurant.description}
+                </p>
+
+                <div className="mt-5 space-y-2">
+                  <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
+                    <span className="font-bold text-slate-900">
+                      English Menu
+                    </span>
+                    <span
+                      className={`font-bold ${availabilityColor(
+                        englishMenuLabel
+                      )}`}
+                    >
+                      {englishMenuLabel}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
+                    <span className="font-bold text-slate-900">
+                      Vegetarian
+                    </span>
+                    <span
+                      className={`font-bold ${availabilityColor(
+                        vegetarianLabel
+                      )}`}
+                    >
+                      {vegetarianLabel}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
+                    <span className="font-bold text-slate-900">Halal</span>
+                    <span
+                      className={`font-bold ${availabilityColor(halalLabel)}`}
+                    >
+                      {halalLabel}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3 text-sm">
-                  <span className="font-bold text-slate-900">Halal</span>
-                  <span className="font-bold text-green-700">
-                    {restaurant.halal ? "Available" : "No"}
-                  </span>
-                </div>
-              </div>
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
+                      Reservation
+                    </p>
+                    <p className="text-sm font-bold text-slate-700">
+                      {restaurant.reservation}
+                    </p>
+                  </div>
 
-              <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
-                    Reservation
-                  </p>
-                  <p className="text-sm font-bold text-slate-700">
-                    {restaurant.reservation}
-                  </p>
+                  <button className="rounded-full bg-red-700 px-4 py-2 text-sm font-bold text-white transition hover:bg-red-800">
+                    View Details
+                  </button>
                 </div>
-
-                <button className="rounded-full bg-red-700 px-4 py-2 text-sm font-bold text-white">
-                  View Details
-                </button>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </section>
     </main>
